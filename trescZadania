@@ -1,0 +1,17 @@
+Należy napisać system, składający się z aplikacji klienckiej (klient) oraz aplikacji serwerowych (3 x EJB – front, middle, back).
+Każdy z modułów ma mieć system logowania logów do konsoli (co się dzieje w i jakiej chwili wykonywania każdego z elementów)
+
+Klient ma się łączyć z pierwszym EJB (front EJB, który jest bezstanowym, zdalnym, asynchronicznym,
+lokalnym beanem z asynchroniczną metodą wywoływaną przez klienta) za pomocą wywołania zdalnego przekazywany jest obiekt DTO zawierający datę,
+nazwę wątku wysyłającego zgłoszenie, a także losową treść -w sumie 3 atrybuty. Klient tworzy 50 wątków, wysyłających in formację do front ejb
+asynchronicznie.
+
+
+
+Ejb front korzysta z ejb middle (lokalny bean, singleton), który zapisuje wszystkie zgłoszenia otrzymane asynchronicznie(przez ejb front)
+do  systemu plików (serializacja do Xml -Xstream/inna biblioteka) nazwy plików mają składać się z daty/ i unikatowego hasha
+typu „ZGL_ddMMyyyy_hash.xml”.
+
+Ejb backend (ostani z EJB) jest EJB Time Driven. Co 10 sekund ma  sprawdzać czy w folderze pojawiły się pliki i je
+odczytywać / zapisywać w bazie danych w postaci encji bazodanowych o strukturze 4 kolumnach (3 atrybuty + id) i usuwać pliki,
+które zapisane zostały w bazie.
