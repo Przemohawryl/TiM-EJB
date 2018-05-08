@@ -49,7 +49,7 @@ public class Client {
                 }
             };
             thread.run();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }
         LOGGER.info("TRANSFER COMPLETE");
     }
