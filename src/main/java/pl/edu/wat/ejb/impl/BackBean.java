@@ -21,7 +21,7 @@ public class BackBean {
     private static EntityManager entityManager;
     private static Integer counter = 0;
 
-    @Schedule(second = "*/10", minute = "*", hour = "*")
+    @Schedule(second = "*/10", minute = "*", hour = "*", persistent = false)
     private void checkExistsFiles() {
         LOGGER.info("CHECKING FILES NO. " + ++counter);
 
