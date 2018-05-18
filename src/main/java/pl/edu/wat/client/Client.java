@@ -49,7 +49,6 @@ public class Client {
                 }
             };
             thread.run();
-            Thread.sleep(2000);
         }
         LOGGER.info("TRANSFER COMPLETE");
     }
